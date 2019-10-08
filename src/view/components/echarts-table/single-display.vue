@@ -2,23 +2,35 @@
   <div class="split-pane-page-wrapper">
     <!-- <div>
       建议
-    </div> -->
+    </div>-->
     <split-pane v-model="offset" @on-moving="handleMoving">
       <div slot="left" class="pane left-pane">
-          <h3>区域折线图</h3>
-        <iframe frameborder="no" src="https://www.zhenglinglu.cn/zllstaticfile/echarts/line/stacked-area-chart.html"></iframe>
+        <h3>{{content.title}}</h3>
+        <iframe frameborder="no" :src="URL +content.show_url"></iframe>
       </div>
       <div slot="right" class="pane right-pane">
         <split-pane v-model="offsetVertical" mode="vertical" @on-moving="handleMoving">
-          <div slot="top" class="pane top-pane">
-            <h3>关键代码</h3>
-            <div>
-              sdfcsdsd
-            </div>
+          <div slot="top" class="pane top-pane scrollbar">
+            <Tabs size="small" :animated="false">
+              <TabPane label="API封装">
+                <div>
+                  <div v-html="content.api_code"></div>
+                </div>
+              </TabPane>
+              <TabPane label="关键代码">
+                <div v-html="content.important_code"></div>
+              </TabPane>
+              <TabPane label="全部代码">
+                <div v-html="content.all_code"></div>
+              </TabPane>
+            </Tabs>
           </div>
-          <div slot="bottom" class="pane bottom-pane">
-            <h3>API封装格式</h3>
-            <div></div>
+          <div slot="bottom" class="pane bottom-pane scrollbar">
+            <Tabs size="small">
+              <TabPane label="全部代码">
+                <div v-html="content.other"></div>
+              </TabPane>
+            </Tabs>
           </div>
           <div slot="trigger" class="custom-trigger">
             <icons class="trigger-icon" :size="22" type="resize-vertical" color="#fff" />
@@ -42,13 +54,29 @@ export default {
     return {
       offset: 0.6,
       offsetVertical: "250px",
-      id:''
+      uid: "",
+      content: {},
+      URL: ''
     };
   },
-  created(){
-    this.id = this.$route.query.userId;
-    console.log(this.id);
-    
+  created() {
+    this.uid = this.$route.query.uid;
+    this.URL = this.$config.url;
+    // get 请求
+    this.$axios
+      .get("/api/component", { params: { uid: this.uid } })
+      .then(res => {
+        if (res.data.result) {
+          this.content = res.data.data[0];
+        }
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  },
+  mounted() {
+    var topPane = document.querySelector(".top-pane");
+    var topPaneHight = topPane.clientHeight || topPane.offsetHeight;
   },
   methods: {
     handleMoving(e) {
@@ -59,6 +87,13 @@ export default {
 </script>
 
 <style lang="less">
+.scrollbar {
+  height: 100%;
+  // height:calc(100% - 2px);
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 .ivu-split-trigger-con {
   border: 1px solid #dcdee2;
 }

@@ -19,6 +19,9 @@ import 'v-org-tree/dist/v-org-tree.css'
 /* eslint-disable */
 if (process.env.NODE_ENV !== 'production') require('@/mock')
 
+//引入代码高亮样式
+import './assets/css/content.min.css';
+import './assets/css/globle.css'
 Vue.use(iView, {
   i18n: (key, value) => i18n.t(key, value)
 })
@@ -32,6 +35,12 @@ installPlugin(Vue)
  * @description 生产环境关掉提示
  */
 Vue.config.productionTip = false
+import axios from 'axios';
+import qs from 'qs';
+import { log } from 'util'
+axios.defaults.baseURL = config.url; //根据环境的不同为 axios 添加基础 url 
+Vue.prototype.$axios = axios;
+Vue.prototype.$qs = qs;
 /**
  * @description 全局注册应用配置
  */
@@ -42,6 +51,19 @@ Vue.prototype.$config = config
 importDirective(Vue)
 Vue.directive('clickOutside', clickOutside)
 
+// 添加日志
+Vue.prototype.$addJournal = function (val) {
+  let data={
+    author:val.author?val.author:'',
+    content:val.content?val.content:'',
+    img_url:val.img_url?val.img_url:'',
+  }
+  axios.post('/journal', qs.stringify(data)).then(res => {
+        console.log('记录成功！');
+        }).catch(err => {
+          // this.$Message.error(message + "失败！");
+        });
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

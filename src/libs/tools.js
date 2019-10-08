@@ -46,7 +46,7 @@ export const hasOneOf = (targetarr, arr) => {
  * @param {String|Number} value 要验证的字符串或数值
  * @param {*} validList 用来验证的列表
  */
-export function oneOf (value, validList) {
+export function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
       return true
@@ -212,4 +212,13 @@ export const objEqual = (obj1, obj2) => {
   else if (keysArr1.length === 0 && keysArr2.length === 0) return true
   /* eslint-disable-next-line */
   else return !keysArr1.some(key => obj1[key] != obj2[key])
+}
+
+//匹配 http 或https
+export const isUrl = (url) => {
+  if (url.indexOf('http') !== -1 || url.indexOf('https') !== -1) {
+    return true;
+  } else {
+    return false;
+  }
 }

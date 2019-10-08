@@ -32,5 +32,6 @@ export default {
       showInHeader: true, // 设为false后不会在顶部显示错误日志徽标
       developmentOff: true // 设为true后在开发环境不会收集错误信息，方便开发中排查错误
     }
-  }
+  },
+  url:'http://localhost:81'
 }
