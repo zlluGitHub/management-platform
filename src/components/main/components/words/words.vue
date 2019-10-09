@@ -10,7 +10,7 @@
                 <div class="ivu-input-wrapper ivu-input-wrapper-default ivu-input-type">
                   <h4>建议/反馈</h4>
                   <p>
-                    类型：
+                    <span>类型：</span>
                     <RadioGroup v-model="radioVal" type="button">
                       <Radio label="BUG"></Radio>
                       <Radio label="建议"></Radio>
@@ -18,11 +18,11 @@
                     </RadioGroup>
                   </p>
                   <p>
-                    标题：
+                    <span>标题：</span>
                     <Input v-model="title" placeholder="请输入标题..." style="width: 300px" />
                   </p>
                   <p>
-                    内容：
+                    <span>内容：</span>
                     <Input
                       v-model="content"
                       type="textarea"
@@ -109,7 +109,12 @@ export default {
     margin-bottom: 15px;
   }
   p {
+    display: flex;
+    align-items: center;
     margin: 15px 0px;
+    span{
+      margin-right: 5px;
+    }
   }
 }
 </style>

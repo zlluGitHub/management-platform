@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>echarts-demo</title>
+    <script src="https://www.zhenglinglu.cn/zllstaticfile/echarts/vue.min.js"></script>
+    <script src="https://www.zhenglinglu.cn/zllstaticfile/echarts/echarts.min.js"></script>
+    <style>
+        html,
+        body,
+        #main,
+        .charts {
+            padding: 0px;
+            margin: 0px;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div ref="dom" class="charts"></div>
+    </div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        new Vue({
+            el: '#main',
+            data: {
+                dom: null
+            },
+            mounted() {
+                this.$nextTick(() => {
+                    let init = this.$refs.dom, _this = this;
+                    this.dom = echarts.init(init);
+                    this.dom.showLoading();//显示loading
+                    // 模拟后端返回的数据
+                    var data = {
+                        nodes: [
+                            //展示的节点
+                            {
+                                name: "Michael R Lyu", //节点名称
+                                value: 1,
+                                category: 0, //与关系网类别索引对应，此处只有一个关系网所以这里写0
+                                symbolSize: 80,
+                                itemStyle: {
+                                    color: "#F4E02E"
+                                },
+                                label: {
+                                    normal: {
+                                        fontSize: 18
+                                    }
+                                }
+                            },
+                            {
+                                name: "Zibin Zheng",
+                                value: 1,
+                                category: 0,
+                                symbolSize: 40,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 10
+                                }
+                            },
+                            {
+                                name: "Swapna S Gokhale",
+                                value: 60,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Swapna S Gokhale",
+                                value: 60,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Swapna S Gokhale",
+                                value: 60,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Swapna S Gokhale",
+                                value: 60,
+                                category: 0,
+                                symbolSize: 10,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Swapna S Gokhale",
+                                value: 60,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Swapna S Gokhale",
+                                value: 60,
+                                category: 0,
+                                symbolSize: 70,
+                                itemStyle: {
+                                    color: "#1AFCC6"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Zengling Xu",
+                                value: 10,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#1AFCC6"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Chinyu Huang",
+                                value: 10,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#1AFCC6"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Kaizhu Hang",
+                                value: 2,
+                                category: 0,
+                                symbolSize: 30,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Yangfan Zhou",
+                                value: 5,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "JungHua to",
+                                value: 2,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Edith C H Ngai",
+                                value: 4,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Peilin Zhao",
+                                value: 1,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Chuti Lin",
+                                value: 5,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#1AFCC6"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Hao Ma",
+                                value: 100,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#1AFCC6"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            },
+                            {
+                                name: "Lance Fiondella",
+                                value: 5,
+                                category: 0,
+                                symbolSize: 20,
+                                itemStyle: {
+                                    color: "#FFAB4D"
+                                },
+                                label: {
+                                    fontSize: 12
+                                }
+                            }
+                        ],
+                        links: [
+                            //节点之间连接
+                            {
+                                source: 0, //起始节点，0表示第一个节点
+                                target: 1, //目标节点，1表示与索引为1的节点进行连接
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 2,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 3,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 13,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 14,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 15,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 16,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 17,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 18,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 4,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 5,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 0,
+                                target: 6,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 1,
+                                target: 7,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 1,
+                                target: 8,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 1,
+                                target: 9,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 8,
+                                target: 10,
+                                value: 1000,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 2,
+                                target: 11,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            },
+                            {
+                                source: 4,
+                                target: 12,
+                                lineStyle: { color: "#FCDB88", width: 2 }
+                            }
+                        ]
+                    };
+                    let option = {
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                dataZoom: {
+                                    yAxisIndex: 'none'
+                                },
+                                dataView: { readOnly: false },
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        series: [
+                            {
+                                // itemStyle: {
+                                //   //图形样式，有 normal 和 emphasis 两个状态。normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+                                //   borderType: "solid", //图形描边类型，默认为实线，支持 'solid'（实线）, 'dashed'(虚线), 'dotted'（点线）。
+                                //   borderColor: "#51be68", //设置图形边框为淡金色,透明度为0.4
+                                //   borderWidth: 2, //图形的描边线宽。为 0 时无描边。
+                                //   opacity: 1 // 图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形。默认0.5
+                                // },
+                                type: "graph",
+                                layout: "force",
+                                animation: false,
+                                label: {
+                                    normal: {
+                                        position: "inside",
+                                        show: true,
+                                        color: "#000",
+                                        fontSize: 18
+                                    }
+                                },
+                                draggable: true,
+
+                                data: data.nodes.map(function (node, idx) {
+                                    node.id = idx;
+                                    return node;
+                                }),
+                                categories: [
+                                    //关系网类别，可以写多组
+                                    {
+                                        name: "网格关系", //关系网名称
+                                        keyword: {},
+                                        base: "网格关系"
+                                    }
+                                ],
+                                force: {
+                                    repulsion: [100, 150],
+                                    edgeLength: [20, 80],
+                                    gravity: 0.1
+                                },
+                                edges: data.links,
+                                lineStyle: {
+                                    normal: {
+                                        curveness: 0.5, //边的曲度，支持从 0 到 1 的值，值越大曲度越大。
+                                        color: "#FCDB88",
+                                        width: 2,
+                                        opacity: 0.3
+                                    },
+                                    emphasis: {
+                                        color: "#6ab7ff",
+                                        opacity: 0.8
+                                    }
+                                }
+                            }
+                        ]
+                    };
+
+                    this.dom.setOption(option);
+                    this.dom.hideLoading();
+                    window.onresize = function () {
+                        _this.dom.resize({
+                            width: init.innerWidth,
+                            height: init.innerHeight
+                        });
+                    };
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>
