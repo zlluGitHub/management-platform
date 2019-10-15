@@ -11,7 +11,12 @@ let journalRouter = require('./routes/journal');
 let wordsRouter = require('./routes/words');
 
 let app = express();
-
+// 引入json解析中间件
+// 解决上传内容太多失败
+let bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '5000000mb'}));
+app.use(bodyParser.urlencoded({limit: '5000000mb', extended: true}));
+// app.use(express.json({limit: '500mb'}));
 // path.join(__dirname, 'public') 表示工程路径后面追加 public
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,21 +25,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 
 //解决跨域
-app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization,Origin,Accept,X-Requested-With');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.header('X-Powered-By', '3.2.1');
-  res.header('Content-Type', 'application/json;charset=utf-8');
-  next();
-});
+// app.all('*', function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type,Content-Length, Authorization,Origin,Accept,X-Requested-With');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.header('X-Powered-By', '3.2.1');
+//   res.header('Content-Type', 'application/json;charset=utf-8');
+//   next();
+// });
 
-// 引入json解析中间件
-// 解决上传内容太多失败
-var bodyParser = require('body-parser');
-// 添加json解析
-app.use(bodyParser.json({limit: '10000mb'}));
-app.use(bodyParser.urlencoded({limit: '10000mb', extended: true}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
