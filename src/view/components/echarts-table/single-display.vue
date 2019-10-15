@@ -27,7 +27,7 @@
           </div>
           <div slot="bottom" class="pane bottom-pane scrollbar">
             <Tabs size="small">
-              <TabPane label="全部代码">
+              <TabPane label="使用说明">
                 <div v-html="content.other"></div>
               </TabPane>
             </Tabs>
